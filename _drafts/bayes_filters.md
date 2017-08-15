@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Probabilistic Robotics. A summary
+title: Bayes filters. A summary
 use_math: true
+excerpt: A quick summary about Bayes filters from the book "Probabilistic Robotics".
 ---
 
-## Robot Environment Interaction
 
-### Probabilistic Generative Laws
+## Probabilistic Generative Laws
 
 In probabilistic robotics, the dynamics of the robot and its environment are characterized by 2 probabilistic laws:
 * the state transition distribution characterizes how state changes over time, possibly as an effects of robot controls: 
@@ -25,7 +25,7 @@ $$p(x_t | x_{0:t-1}, z_{1:t-1}, u_{1:t}) = p(x_t | x_{t-1}, u_t)$$
 
 $$p(z_t | x_{0:t}, z_{1:t-1}, u_{1:t}) = p(z_t | x_t)$$
 
-### Belief Distributions
+## Belief Distributions
 
 The belief of a robot is the posterior distribution over the state of the environment (including the robot state) given all past sensor measurements and all past controls:
 
@@ -37,13 +37,11 @@ $$\overline{bel}(x_t) = p(x_t | z_{1:t-1}, u_{1:t})$$
 
 ## Bayes Filters
 
-### The Bayes Filter Algorithm
-
-The most general algorithm for calculating belief is given by the _Bayes filter_ algorithm , a recursive algorithm that calculates the belief \`bel(x_t)\` from the previous belief \`bel(x_{t-1})\` and the last measurement and control data:
+The most general algorithm for calculating belief is given by the _Bayes filter_ algorithm, a recursive algorithm that calculates the belief \`bel(x_t)\` from the previous belief \`bel(x_{t-1})\` and the last measurement and control data:
 
 __Algorithm Bayes_filter__(\`bel(x_{t-1}), u_t, z_t\`):
 * for all \`x_t\` do
-	* \`\overline{bel}(x_t) = \int p(x_t|x_{t-1}, u_t) bel(x_t) dx_{t-1}\`
+	* \`\overline{bel}(x_t) = \int p(x_t|x_{t-1}, u_t) bel(x_{t-1}) dx_{t-1}\`
 	* \`bel(x_t) = \eta p(z_t|x_t) \overline{bel}(x_t)\`
 * endfor
 * return \`bel(x_t)\`
