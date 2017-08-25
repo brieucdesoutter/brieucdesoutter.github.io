@@ -33,24 +33,24 @@ Newer languages like Swift and Kotlin or revised one like C++ 11 are said to pro
 have to provide type for most declarations because the compiler will figure it out.
 
 This has the following advantages:
-- it saves you a lot of typing (pun intended);
+- it saves you a lot of typing (on the keyboard I mean);
 - it also saves you from remembering the return type of all the library functions you may use;
 - and it allows easier refactoring.
 
 TODO implementation in Swift, Kotlin, C++ 11
 
-In dynamic programming languages like python, ruby and javascript to name a few, even though every epxression has a type, 
-it is not determined/checked by the interpreter until runtime so there is not need for the programmer to add that information
+In dynamic programming languages like python or javascript, even though every epxression has a type (don't quote me on that...), 
+it is not determined/checked by the interpreter until runtime so there is no need for the programmer to add that information
 in the source code and type inference as defined above is not required. 
 
 However, without support of tools like code completion, the lack of type information in the source code can sometime be a problem
-for the developer. Indeed it is often nice/necessary to know what you're dealing with and what you can do with variables and
+for the developer. Indeed, while coding, it is necessary to know what you're dealing with and what you can do with variables and
 function return values. 
 
 For statically typed languages, tools can use the compiler knowledge about types to provide code completion, and highlight errors
 as you type. 
 For dynamic language, things are more complicated, and the trend seems to add back type information in the source code: Python
-type annotations, Flow or JSDoc comments in Javascript: tools like PyCharm and IntelliJ provides much better inspection hints and warnings when those are present in the source code.
+type annotations, Flow or JSDoc comments in Javascript. IDE like PyCharm and IntelliJ provides much better inspection hints and warnings when those annotations/comments are present in the source code.
 
 
 
