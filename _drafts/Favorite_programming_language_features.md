@@ -24,48 +24,33 @@ So without further ado, and in no particular order...
 
 ## Type inference
 
-This one is only relevent to statically typed language where the type of every expression must be known at 
-compile time. 
+"Type inference refers to the automatic deduction of the data type of an expression in a programming language." (source Wikipedia)
 
-In language like Java, C++ 03 and before, it is the programmer responsability to specify type information when
-declaring variable and functions. However the compiler is usually capable of figuring out the type of declarations
-in most cases.
+Compilers for statically/strongly typed languages do that to various level during compilation depending on their type system.
+Some languages/compilers have limited type inference capabilities and thus force you, the developer, to provide the type for every variable and function/method declarations and to initialize variables with an expression whose type is compatible with the declared type.
 
-Type inference leverages that knowledge and let the compiler works for the developer.
+Newer languages like Swift and Kotlin or revised one like C++ 11 are said to provide "Type Inference" when the developer does not 
+have to provide type for most declarations because the compiler will figure it out.
 
-For example, say you have a C++ utility function that counts words in strings defined as follow:
+This has the following advantages:
+- it saves you a lot of typing (pun intended);
+- it also saves you from remembering the return type of all the library functions you may use;
+- and it allows easier refactoring.
 
-{% highlight cpp %}
-extern map<string, int> count_words(vector<string> input);
-{% endhighlight %}
+TODO implementation in Swift, Kotlin, C++ 11
 
-When you use it, you have to remember that it returns a ```map<string, int>```
-and not a ```vector<int>``` and type the right type!
+In dynamic programming languages like python, ruby and javascript to name a few, even though every epxression has a type, 
+it is not determined/checked by the interpreter until runtime so there is not need for the programmer to add that information
+in the source code and type inference as defined above is not required. 
 
-With type inference, all you have to do instead is:
+However, without support of tools like code completion, the lack of type information in the source code can sometime be a problem
+for the developer. Indeed it is often nice/necessary to know what you're dealing with and what you can do with variables and
+function return values. 
 
-{% highlight cpp %}
-auto result = count_words(lines);
-{% endhighlight %} 
+For statically typed languages, tools can use the compiler knowledge about types to provide code completion, and highlight errors
+as you type. 
+For dynamic language, things are more complicated, and the trend seems to add back type information in the source code: Python
+type annotations, Flow or JSDoc comments in Javascript: tools like PyCharm and IntelliJ provides much better inspection hints and warnings when those are present in the source code.
 
-The simple use of ```auto``` is enough to tell the compiler "figure the type of the result from the context".
 
-So type inference is kind of type saving utility (pun intended).
-
-Sometime however, it is nice to know what you're dealing with: say you're working with a new library or piece 
-of code, and you call a method from that library, you can assign the result to an auto-declared variable but
-it doesn't tell you a lot about what you can do whith it...
-
-However the compiler knowledge about types of the program objects allows to build powerful tool like auto-completion.
-
-The previous example is using C++ 11 but other languages have that too.
-
-Swift uses ```var``` for mutable variables and ```let``` for immutable variables and Kotlin uses ```var``` and ```val```.
-
-In dynamically typed programming languages like python, ruby and javascript to name a few, 
-even though every epxression has a type, it is not determined/checked until runtime by the interpreter/JIT 
-so there is not need for the programmer to add that information in his source code. 
-The drawback is that it becomes quickly impossible for autocompletion tools to provide meaningful suggestions and 
-the Python developpers have designed a system of type annotations that can be leveraged by IDE to perform some type-checking 
-usually performed by a compiler in statically typed language. 
 
